@@ -1,0 +1,21 @@
+order_id,order_date,customer,product,category,quantity,sales,status,city,state
+1,2026-06-01,Arun,Laptop Pro,Electronics,1,75000,Completed,Kochi,Kerala
+2,2026-06-02,Rahul,Gaming Laptop,Electronics,1,95000,Completed,Kochi,Kerala
+3,2026-06-03,Anu,Wireless Mouse,Accessories,1,1200,Completed,Thrissur,Kerala
+4,2026-06-04,Priya,Mechanical Keyboard,Accessories,1,3500,Pending,Calicut,Kerala
+5,2026-06-05,John,Monitor 24 Inch,Electronics,1,12000,Completed,Bangalore,Karnataka
+6,2026-06-06,Riya,Monitor 27 Inch,Electronics,1,18000,Completed,Chennai,Tamil Nadu
+7,2026-06-07,David,USB Hub,Accessories,1,800,Pending,Mumbai,Maharashtra
+8,2026-06-08,Ajay,External SSD,Storage,1,6500,Completed,Delhi,Delhi
+9,2026-06-09,Sneha,Printer,Office,1,9000,Completed,Pune,Maharashtra
+10,2026-06-10,Vishnu,Scanner,Office,1,7000,Completed,Kochi,Kerala
+11,2026-06-11,Akhil,Tablet,Electronics,1,25000,Pending,Kollam,Kerala
+12,2026-06-12,Meera,Smartphone,Electronics,1,30000,Completed,Kannur,Kerala
+13,2026-06-13,Nikhil,Router,Networking,1,2500,Completed,Kochi,Kerala
+14,2026-06-14,Ramesh,Webcam,Accessories,1,2200,Pending,Mysore,Karnataka
+15,2026-06-15,Hari,Headset,Accessories,1,1800,Completed,Palakkad,Kerala
+16,2026-06-16,Neha,Projector,Office,1,35000,Completed,Hyderabad,Telangana
+17,2026-06-17,Kiran,Power Bank,Accessories,1,1500,Completed,Kochi,Kerala
+18,2026-06-18,Deepa,Office Chair,Furniture,1,8500,Pending,Thrissur,Kerala
+19,2026-06-19,Manu,Standing Desk,Furniture,1,22000,Completed,Kochi,Kerala
+20,2026-06-20,Anjali,NAS Storage,Storage,1,45000,Completed,Trivandrum,Kerala

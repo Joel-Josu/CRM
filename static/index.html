@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <meta name="description" content="Ask questions about your dataset and explore accurate answers, tables, and charts.">
+  <title>Data Desk — Analytics Assistant</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <a class="brand" href="/" aria-label="Data Desk home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m6 14v-7m5 7V3M2 19h20"/></svg>
+        </span>
+        <span>data<span class="brand-light">desk</span></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-links">
+        <button class="nav-link active" type="button" data-nav="dashboard">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></svg>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-link" type="button" data-nav="history">
+          <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 2.64-6.36L3 8"/><path d="M3 3v5h5m4-1v5l3 2"/></svg>
+          <span>Chat history</span>
+          <span class="nav-count" id="history-count">0</span>
+        </button>
+        <button class="nav-link" type="button" data-action="upload">
+          <svg viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+          <span>Upload dataset</span>
+        </button>
+      </nav>
+      <div class="sidebar-rule"></div>
+      <div class="workspace-label">YOUR DATA</div>
+      <div class="dataset-mini" id="dataset-mini">
+        <span class="dataset-mini-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>
+        </span>
+        <span class="dataset-mini-text"><strong id="sidebar-dataset-name">No dataset</strong><small id="sidebar-dataset-size">Load a dataset to begin</small></span>
+        <span class="dataset-dot" id="dataset-dot"></span>
+      </div>
+      <div class="sidebar-bottom">
+        <button class="nav-link" type="button" data-action="settings">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.7a8 8 0 0 1-1.7 1l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.7-1l-1.7.7-1.4-2.4 1.4-1.1a7 7 0 0 1 0-2l-1.4-1.1 1.4-2.4 1.7.7a8 8 0 0 1 1.7-1l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.7 1l1.7-.7 1.4 2.4-1.4 1.1a7 7 0 0 1 0 2Z" transform="translate(-1 -1) scale(.99)"/></svg>
+          <span>Settings</span>
+        </button>
+        <div class="user-card">
+          <span class="avatar">D</span>
+          <span><strong>Data workspace</strong><small>Private on this device</small></span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" type="button" id="menu-button" aria-label="Open navigation">
+          <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div class="breadcrumb"><span>Workspace</span><span class="breadcrumb-slash">/</span><strong>Analytics assistant</strong></div>
+        <div class="topbar-actions">
+          <span class="privacy-chip"><span></span> Your data stays local</span>
+          <button class="icon-button" type="button" data-action="settings" aria-label="Settings">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.7a8 8 0 0 1-1.7 1l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.7-1l-1.7.7-1.4-2.4 1.4-1.1a7 7 0 0 1 0-2l-1.4-1.1 1.4-2.4 1.7.7a8 8 0 0 1 1.7-1l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.7 1l1.7-.7 1.4 2.4-1.4 1.1a7 7 0 0 1 0 2Z" transform="translate(-1 -1) scale(.99)"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="content" id="content">
+        <section class="welcome" id="welcome">
+          <div class="welcome-eyebrow"><span class="sparkle">✦</span> YOUR DATA, ANSWERED</div>
+          <h1>Welcome! Ask anything<br class="desktop-break"> about your data.</h1>
+          <p>Get clear answers, useful charts, and the numbers behind every insight.</p>
+          <div class="suggestion-grid" id="suggestions">
+            <button class="suggestion-card" type="button" data-question="What is the total sales?">
+              <span class="suggestion-icon mint">↗</span><span><strong>What's the total sales?</strong><small>Get a quick business snapshot</small></span>
+              <svg class="suggestion-arrow" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+            <button class="suggestion-card" type="button" data-question="Identify the top 5 performing products">
+              <span class="suggestion-icon lavender">▤</span><span><strong>Top performing products</strong><small>Find your best sellers</small></span>
+              <svg class="suggestion-arrow" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+            <button class="suggestion-card" type="button" data-question="Show monthly sales trends">
+              <span class="suggestion-icon peach">⌁</span><span><strong>Monthly sales trends</strong><small>See how performance changes</small></span>
+              <svg class="suggestion-arrow" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+            <button class="suggestion-card" type="button" data-question="Compare sales across categories">
+              <span class="suggestion-icon blue">◫</span><span><strong>Compare categories</strong><small>Spot your highest-value segments</small></span>
+              <svg class="suggestion-arrow" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        </section>
+
+        <section class="conversation" id="conversation" aria-live="polite"></section>
+        <div class="loading-state hidden" id="loading" role="status"><span class="loader"></span><span>Working through your data…</span></div>
+        <div class="toast hidden" id="toast" role="status"></div>
+
+        <section class="composer-wrap" aria-label="Ask a question">
+          <form class="composer" id="question-form">
+            <textarea id="question-input" rows="1" maxlength="1000" placeholder="Ask a question about your data…" aria-label="Ask a question about your data"></textarea>
+            <div class="composer-footer">
+              <div class="composer-tools">
+                <input class="visually-hidden" type="file" id="file-input" accept=".csv,.xlsx,.json,text/csv,application/json,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                <button class="tool-button" type="button" data-action="upload">
+                  <svg viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+                  <span>Add dataset</span>
+                </button>
+                <span class="tool-divider"></span>
+                <span class="file-hint" id="composer-dataset">Sample data loaded</span>
+              </div>
+              <button class="send-button" id="send-button" type="submit" aria-label="Send question">
+                <span>Ask</span>
+                <svg viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </form>
+          <p class="composer-note">Answers are calculated from your dataset. Check the methodology for details.</p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="modal-backdrop" role="presentation">
+    <section class="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <button class="icon-button modal-close" type="button" id="modal-close" aria-label="Close settings">×</button>
+      <div class="modal-icon">⚙</div>
+      <h2 id="settings-title">Workspace settings</h2>
+      <p>Uploaded files and row values stay on this device. When Gemini is enabled, your question and column names are sent to Gemini for query planning; calculations remain local.</p>
+      <div class="settings-row"><span><strong>Question interpretation</strong><small id="ai-status">Checking configuration…</small></span><span class="status-pill" id="ai-status-pill">…</span></div>
+      <div class="settings-row"><span><strong>Current dataset</strong><small id="settings-dataset">Loading…</small></span><button class="text-button" type="button" data-action="download-original">Download</button></div>
+      <div class="settings-row"><span><strong>Sample data</strong><small>Restore the bundled CRM sales dataset</small></span><button class="text-button" type="button" data-action="sample">Load sample</button></div>
+      <p class="modal-footnote">The app binds to your computer only. Configure GEMINI_API_KEY in the server environment to enable optional AI-assisted question interpretation.</p>
+    </section>
+  </div>
+</body>
+</html>
